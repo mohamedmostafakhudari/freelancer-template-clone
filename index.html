@@ -55,11 +55,19 @@
 			}
 		</style>
 	</head>
-	<body class="font-dm">
+	<body class="font-dm min-h-[300vh]">
 		<header>
-			<nav class="fixed top-0 right-0 left-0 bg-secondary text-white uppercase">
+			<nav
+				id="nav"
+				class="fixed top-0 right-0 left-0 bg-secondary text-white uppercase"
+			>
 				<div class="container flex items-center justify-between py-4 lg:py-0 max-w-screen-xl">
-					<h2 class="text-xl whitespace-nowrap font-mont font-bold lg:text-3xl">start bootstrap</h2>
+					<h2
+						id="logo"
+						class="text-xl whitespace-nowrap font-mont font-bold transition-[font-size,padding] duration-200 lg:text-3xl lg:py-10"
+					>
+						start bootstrap
+					</h2>
 					<button
 						id="menuBtn"
 						class="flex items-center gap-0.5 rounded-lg ring-white p-4 py-3 bg-primary uppercase transition hover:bg-primary-dark focus:ring-4 lg:hidden"
@@ -68,26 +76,29 @@
 						<span>menu</span>
 						<span class="material-symbols-outlined"> menu </span>
 					</button>
-					<ul class="hidden lg:flex items-center text-lg font-mont font-bold">
+					<ul class="navList hidden lg:flex gap-4 items-center text-lg font-mont font-bold">
 						<!-- desktop -->
-						<li class="text-white cursor-pointer tracking-tight transition hover:text-primary">
+						<li
+							data-selected
+							class="navItem text-white cursor-pointer tracking-tight transition hover:text-primary data-[selected]:hover:text-white group"
+						>
 							<a
 								href="#portfolio"
-								class="block py-8 px-6"
+								class="block rounded-md py-4 px-4 tracking-tight bg-transparent transition group-data-[selected]:bg-primary"
 								>portfoilo</a
 							>
 						</li>
-						<li class="text-white cursor-pointer tracking-tight transition hover:text-primary">
+						<li class="navItem text-white cursor-pointer tracking-tight transition hover:text-primary data-[selected]:hover:text-white group">
 							<a
 								href="#about"
-								class="block py-8 px-6"
+								class="block rounded-md py-4 px-4 tracking-tight bg-transparent transition group-data-[selected]:bg-primary"
 								>about</a
 							>
 						</li>
-						<li class="text-white cursor-pointer tracking-tight transition hover:text-primary">
+						<li class="navItem text-white cursor-pointer tracking-tight transition hover:text-primary data-[selected]:hover:text-white group">
 							<a
 								href="#contact"
-								class="block py-8 px-6"
+								class="block rounded-md py-4 px-4 tracking-tight bg-transparent transition group-data-[selected]:bg-primary"
 								>contact</a
 							>
 						</li>
@@ -99,22 +110,25 @@
 					class="absolute overflow-hidden top-full right-0 left-0 bg-secondary max-h-0 transition-all duration-[400ms] ease-out data-[active]:max-h-[1000px] data-[active]:duration-[400ms] data-[active]:transition-all data-[active]:ease-in"
 				>
 					<!-- mobile -->
-					<ul class="flex lg:hidden flex-col text-base font-mont font-bold pb-4">
-						<li class="text-white cursor-pointer tracking-tight transition hover:text-primary">
+					<ul class="navList flex lg:hidden flex-col text-base font-mont font-bold pb-4">
+						<li
+							data-selected
+							class="menuItem text-white cursor-pointer tracking-tight transition hover:text-primary data-[selected]:text-primary"
+						>
 							<a
 								href="#portfolio"
 								class="block py-4 pl-4"
 								>portfoilo</a
 							>
 						</li>
-						<li class="text-white cursor-pointer tracking-tight transition hover:text-primary">
+						<li class="menuItem text-white cursor-pointer tracking-tight transition hover:text-primary data-[selected]:text-primary">
 							<a
 								href="#about"
 								class="block py-4 pl-4"
 								>about</a
 							>
 						</li>
-						<li class="text-white cursor-pointer tracking-tight transition hover:text-primary">
+						<li class="menuItem text-white cursor-pointer tracking-tight transition hover:text-primary data-[selected]:text-primary">
 							<a
 								href="#contact"
 								class="block py-4 pl-4"
