@@ -4,14 +4,12 @@
 const menuBtn = document.querySelector("#menuBtn");
 
 menuBtn.addEventListener("click", () => {
-	const menu = document.querySelector("#menu");
-	if (menu.hasAttribute("data-active")) {
-		menu.removeAttribute("data-active");
+	if (isMenuActive()) {
+		closeMenu();
 	} else {
-		menu.setAttribute("data-active", "");
+		openMenu();
 	}
 });
-
 /* handle nav size change */
 document.addEventListener("scroll", (e) => {
 	updateNavSizing();
@@ -33,6 +31,13 @@ function updateNavSizing() {
 		logo.classList.add("lg:py-6");
 	}
 }
+/* handle logo click event */
+const logo = document.querySelector("#logo");
+logo.addEventListener("click", () => {
+	closeMenu();
+	navigateToStart();
+});
+
 /* handle navItems click event */
 const navList = document.querySelector(".navList");
 const navItems = document.querySelectorAll(".navItem");
@@ -51,6 +56,7 @@ menu.addEventListener("click", (e) => {
 	if (!target) return;
 	e.preventDefault();
 	clearNavItemsSelection(menuItems);
+	closeMenu();
 	target.parentElement.setAttribute("data-selected", "");
 	window.location.href = target.getAttribute("href");
 });
@@ -59,6 +65,23 @@ function clearNavItemsSelection(navItems) {
 	navItems.forEach((item) => {
 		item.removeAttribute("data-selected");
 	});
+}
+function navigateToStart() {
+	window.scrollTo(0, 0);
+	clearNavItemsSelection(navItems);
+	clearNavItemsSelection(menuItems);
+}
+function isMenuActive() {
+	const menu = document.querySelector("#menu");
+	return menu.hasAttribute("data-active");
+}
+function openMenu() {
+	const menu = document.querySelector("#menu");
+	menu.setAttribute("data-active", "");
+}
+function closeMenu() {
+	const menu = document.querySelector("#menu");
+	menu.removeAttribute("data-active");
 }
 
 // render portfolio gallery

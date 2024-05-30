@@ -1,5 +1,8 @@
 <!DOCTYPE html>
-<html lang="en">
+<html
+	lang="en"
+	class="scroll-smooth"
+>
 	<head>
 		<meta charset="UTF-8" />
 		<meta
@@ -74,12 +77,13 @@
 				class="fixed top-0 right-0 left-0 z-10 bg-secondary text-white uppercase"
 			>
 				<div class="container flex items-center justify-between py-4 lg:py-0 max-w-screen-xl">
-					<div
+					<a
 						id="logo"
-						class="text-xl whitespace-nowrap font-mont font-bold transition-[font-size,padding] duration-200 lg:text-3xl lg:py-10"
+						href="#"
+						class="block cursor-pointer text-xl whitespace-nowrap font-mont font-bold transition-[font-size,padding] duration-200 lg:text-3xl lg:py-10"
 					>
 						start bootstrap
-					</div>
+					</a>
 					<button
 						id="menuBtn"
 						class="flex items-center gap-0.5 rounded-lg ring-white p-4 py-3 bg-primary uppercase transition hover:bg-primary-dark focus:ring-4 lg:hidden"
@@ -90,10 +94,7 @@
 					</button>
 					<ul class="navList hidden lg:flex gap-4 items-center text-lg font-mont font-bold">
 						<!-- desktop -->
-						<li
-							data-selected
-							class="navItem text-white cursor-pointer tracking-tight transition hover:text-primary data-[selected]:hover:text-white group"
-						>
+						<li class="navItem text-white cursor-pointer tracking-tight transition hover:text-primary data-[selected]:hover:text-white group">
 							<a
 								href="#portfolio"
 								class="block rounded-md py-4 px-4 tracking-tight bg-transparent transition group-data-[selected]:bg-primary"
@@ -123,10 +124,7 @@
 				>
 					<!-- mobile -->
 					<ul class="navList flex lg:hidden flex-col text-base font-mont font-bold pb-4">
-						<li
-							data-selected
-							class="menuItem text-white cursor-pointer tracking-tight transition hover:text-primary data-[selected]:text-primary"
-						>
+						<li class="menuItem text-white cursor-pointer tracking-tight transition hover:text-primary data-[selected]:text-primary">
 							<a
 								href="#portfolio"
 								class="block py-4 pl-4"
