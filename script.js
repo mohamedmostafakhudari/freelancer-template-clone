@@ -60,7 +60,33 @@ menu.addEventListener("click", (e) => {
 	target.parentElement.setAttribute("data-selected", "");
 	window.location.href = target.getAttribute("href");
 });
-
+/* active nav items according to the current section on the viewport */
+const observer = new IntersectionObserver(
+	(entries, observer) => {
+		entries.forEach((entry) => {
+			if (entry.isIntersecting) {
+				console.log(entry.target);
+				selectVisibleSection(entry.target.id);
+			}
+		});
+	},
+	{
+		rootMargin: "0px",
+		threshold: 0.5,
+	}
+);
+const sections = document.querySelectorAll("section[id]:not(#hero)");
+sections.forEach((section) => {
+	observer.observe(section);
+});
+function selectVisibleSection(id) {
+	clearNavItemsSelection(navItems);
+	navItems.forEach((item) => {
+		if (item.firstElementChild.getAttribute("href").slice(1) === id) {
+			item.setAttribute("data-selected", "");
+		}
+	});
+}
 function clearNavItemsSelection(navItems) {
 	navItems.forEach((item) => {
 		item.removeAttribute("data-selected");
@@ -196,4 +222,62 @@ function closeDialog() {
 	setTimeout(() => {
 		dialog.close();
 	}, 200);
+}
+
+// Contact Form
+/* Validation */
+const inputs = document.querySelectorAll(".input");
+
+inputs.forEach((input) => {
+	const inputWrapper = input.closest(".inputWrapper");
+	inputWrapper.addEventListener("click", (e) => {
+		if (document.hasFocus()) return;
+		console.log("clicked");
+		input.focus();
+	});
+	input.addEventListener("click", (e) => {
+		e.stopPropagation();
+		e.preventDefault();
+	});
+	input.addEventListener("input", () => {
+		const errorBox = inputWrapper.querySelector(".errorBox");
+		if (input.validity.valid) {
+			inputWrapper.removeAttribute("data-invalid");
+			inputWrapper.setAttribute("data-valid", "");
+			errorBox.innerHTML = "";
+		} else {
+			inputWrapper.removeAttribute("data-valid");
+			inputWrapper.setAttribute("data-invalid", "");
+
+			errorBox.innerHTML = "";
+			showError(input, errorBox);
+		}
+	});
+});
+function showError(input, errorBox) {
+	if (input.validity.valueMissing) {
+		const errorElem = createErrorElement(`${sentanceArticle(input.name)} ${input.name} is required`);
+		errorBox.appendChild(errorElem);
+		if (input.type === "email") {
+			const extraErrorElem = createErrorElement(`${input.name.charAt(0).toUpperCase()}${input.name.slice(1)} is not valid`);
+			errorBox.appendChild(extraErrorElem);
+		}
+	}
+	if (input.validity.typeMismatch) {
+		const errorElem = createErrorElement(`${input.name.charAt(0).toUpperCase()}${input.name.slice(1)} is not valid`);
+		errorBox.appendChild(errorElem);
+	}
+}
+function createErrorElement(message) {
+	const p = document.createElement("p");
+	p.textContent = message;
+	p.className = "text-red-500 text-sm mt-1";
+	return p;
+}
+function sentanceArticle(string) {
+	if (string[0].match(/[aeiou]/i)) {
+		return "An";
+	} else {
+		return "A";
+	}
 }
