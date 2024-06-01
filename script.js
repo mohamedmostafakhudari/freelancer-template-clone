@@ -181,11 +181,6 @@ function galleryCard({ imgSrc, title, content }) {
 /* handle card info dialog */
 const dialog = document.querySelector("#portfolioDialog");
 
-// dialog.addEventListener("transitionend", (e) => {
-// 	if (e.target != e.currentTarget || e.target.hasAttribute("data-opened")) return;
-// 	dialog.close();
-// });
-
 /** handle open dialog */
 function openDialog({ imgSrc, title, content }) {
 	updateDialogContent({ imgSrc, title, content });
@@ -232,7 +227,6 @@ inputs.forEach((input) => {
 	const inputWrapper = input.closest(".inputWrapper");
 	inputWrapper.addEventListener("click", (e) => {
 		if (document.hasFocus()) return;
-		console.log("clicked");
 		input.focus();
 	});
 	input.addEventListener("click", (e) => {
